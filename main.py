@@ -34,8 +34,9 @@ def operate_coffee_machine():
     """Operates the coffee_machine and keeps track of profit and resources."""
     total_money = 0
     global resources
-    run_machine = True
-    while run_machine:
+    while True:
+        # Either attempts to order one of three choices of drink, switches the coffee machine off, or reports supplies
+        # remaining.
         coffee_machine_action = input('What would you like? (espresso/latte/cappuccino): ')
         if coffee_machine_action == 'off':
             return
@@ -53,7 +54,7 @@ def operate_coffee_machine():
                     resources[key] += MENU[coffee_machine_action]['ingredients'][key]
             else:
                 total_money += price_of_beverage
-                change = money - price_of_beverage
+                change = round(money - price_of_beverage, 2)
                 if change > 0:
                     print(f'Here is ${change} in change.')
                 print(f'Here is your {coffee_machine_action}. Enjoy!')
